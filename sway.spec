@@ -1,12 +1,11 @@
 Name:           sway
 Version:        1.0
-Release:        0.beta.2%{?dist}
+Release:        1%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
 License:        MIT
 URL:            https://github.com/swaywm/sway
-%global versrc_tail -beta.2
-Source0:        %{url}/archive/%{version}%{?versrc_tail}/%{name}-%{version}%{?versrc_tail}.tar.gz
+Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
 
 BuildRequires:  asciidoc
 BuildRequires:  gcc-c++
@@ -86,6 +85,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/backgrounds/sway/*.png
 
 %changelog
+* Fri Mar 15 2018 kenoh <kenoh@local> - 1.0
+- Final release 1.0
+
 * Tue Dec 04 2018 Jerzy Drozdz <rpmbuilder@jdsieci.pl> - 1.0-beta.2
 - Update to 1.0-beta.2
 
