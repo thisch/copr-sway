@@ -25,6 +25,7 @@ BuildRequires:  pkgconfig(wayland-cursor)
 BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(wayland-server)
+BuildRequires:  pkgconfig(libevdev)
 # cannot depend like this since pc file is versioned 0.0.1
 #BuildRequires:  pkgconfig(wlroots) >= 0.1
 BuildRequires:  wlroots-devel >= 0.2
