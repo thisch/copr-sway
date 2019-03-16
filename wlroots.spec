@@ -1,19 +1,9 @@
-%global commit  0.2
-%global gitdate %{nil}
-%global gitrel  %{nil}
-%global gitver  %{nil}
-# Keep the below around for possible snapshot times (was a must prior to 0.1)
-#global scommit #(c=#{commit}; echo ${c:0:7})
-#global gitrel  .#{gitdate}git#{scommit}
-#global gitver  -#{gitdate}git#{scommit}
-
-
 %global api_ver 0
 
 
 Name:           wlroots
-Version:        0.2
-Release:        1%{?gitrel}%{?dist}
+Version:        0.5.0
+Release:        1%{?dist}
 Summary:        A modular Wayland compositor library
 
 # All files in the sources are licensed as MIT, but
@@ -34,7 +24,8 @@ Summary:        A modular Wayland compositor library
 # underlying licenses.
 License:        MIT
 URL:            https://github.com/swaywm/%{name}
-Source0:        %{url}/archive/%{commit}.tar.gz#/%{name}-%{version}%{?gitver}.tar.gz
+Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
+#Source0:        %{url}/archive/%{commit}.tar.gz
 #Patch0:         %{url}/commit/be6210cf8216c08a91e085dac0ec11d0e34fb217.patch#/pkgconfig_version.patch
 
 BuildRequires:  gcc
@@ -84,7 +75,7 @@ Development files for %{name}.
 
 %prep
 %define __scm git_am
-%autosetup -n %{name}-%{commit} -p 1
+%autosetup -n %{name}-%{version} -p 1
 
 
 %build
@@ -136,6 +127,9 @@ done
 
 
 %changelog
+* Sat Mar 16 2019 Matus Honek <mhonek@quincampoix> - 0.5.0-1
+- rebase to 0.5.0
+
 * Tue Dec 04 2018 Jerzy Drozdz <rpmbuilder@jdsieci.pl> - 0.2-1
 - Update to upstream
 
