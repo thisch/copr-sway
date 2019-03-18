@@ -71,14 +71,11 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %config(noreplace) %{_sysconfdir}/sway/config
 %dir %{_sysconfdir}/sway/security.d
 %config(noreplace) %{_sysconfdir}/sway/security.d/00-defaults
-%config %{_sysconfdir}/pam.d/swaylock
 %{_mandir}/man1/sway*.1*
 %{_mandir}/man5/sway*.5*
 %caps(cap_sys_ptrace,cap_sys_tty_config=eip) %{_bindir}/sway
 %{_bindir}/swaybar
 %{_bindir}/swaybg
-%{_bindir}/swayidle
-%{_bindir}/swaylock
 %{_bindir}/swaymsg
 %{_bindir}/swaynag
 %{_datadir}/wayland-sessions/sway.desktop
