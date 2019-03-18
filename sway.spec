@@ -43,6 +43,8 @@ Recommends:     rxvt-unicode-256color-ml
 # grim is a recommended way to take screenshots on sway 1.0+
 Recommends:     grim
 
+Patch0001: 3862.patch
+
 %description
 Sway is a tiling window manager supporting Wayland compositor protocol and 
 i3-compatible configuration.
