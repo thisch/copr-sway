@@ -1,18 +1,14 @@
-%global commit  v1.1
-%global gitdate %{nil}
-%global gitrel  %{nil}
-%global gitver  %{nil}
-
-
-Name:		mako
-Version:	1.1
-Release:	1.1%{?dist}
+Name:		  mako
+Version:	1.2
+Release:	1%{?dist}
 Summary:	A lightweight notification daemon for Wayland.
 
 License:	MIT
-URL:		https://github.com/emersion/mako
-Source0:	%{url}/archive/%{commit}.tar.gz#/%{name}-%{version}%{?gitver}.tar.gz
+URL:      https://wayland.emersion.fr/mako
+Source0:	https://github.com/emersion/mako/archive/v%{version}.tar.gz
 
+Requires:       cairo
+Requires:       pango
 BuildRequires:	gcc
 BuildRequires:	meson
 BuildRequires:  systemd-devel
@@ -39,8 +35,8 @@ BuildRequires:	scdoc
 
 
 %files
-#doc
 %license LICENSE
+%doc README*.md
 %{_bindir}/mako
 %{_bindir}/makoctl
 %{_mandir}/man1/mako.1.gz
@@ -48,9 +44,11 @@ BuildRequires:	scdoc
 
 
 %changelog
+* Sun Mar 19 2019 Rafael Gumieri <rafael@gumieri.com> - 1.2-1
+- New release
+
 * Thu Nov 22 2018 Jerzy Drozdz <rpmbuilder@jdsieci.pl> - 1.1-1.1
 - Added missing build requisite
 
 * Thu Nov 22 2018 Jerzy Drozdz <rpmbuilder@jdsieci.pl> - 1.1-1
 - Initial build
-

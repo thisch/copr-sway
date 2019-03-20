@@ -11,6 +11,7 @@ BuildRequires:  asciidoc
 BuildRequires:  gcc-c++
 BuildRequires:  git
 BuildRequires:  make
+BuildRequires:  cmake
 BuildRequires:  meson
 BuildRequires:  pam-devel
 BuildRequires:  pkgconfig(cairo)
