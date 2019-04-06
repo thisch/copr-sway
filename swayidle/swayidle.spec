@@ -26,7 +26,7 @@ with any Wayland compositor which implements the KDE idle protocol.
 
 
 %build
-%meson --auto-features=auto
+%meson -Dwerror=false --auto-features=auto
 %meson_build
 
 

@@ -33,7 +33,7 @@ swaylock is a screen locking utility for Wayland compositors.
 
 
 %build
-%meson --auto-features=auto
+%meson -Dwerror=false --auto-features=auto
 %meson_build
 
 

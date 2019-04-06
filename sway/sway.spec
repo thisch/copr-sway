@@ -27,9 +27,7 @@ BuildRequires:  pkgconfig(wayland-egl)
 BuildRequires:  pkgconfig(wayland-protocols)
 BuildRequires:  pkgconfig(wayland-server)
 BuildRequires:  pkgconfig(libevdev)
-# cannot depend like this since pc file is versioned 0.0.1
-#BuildRequires:  pkgconfig(wlroots) >= 0.1
-BuildRequires:  wlroots-devel >= 0.2
+BuildRequires:  wlroots-devel >= 0.5
 BuildRequires:  wayland-devel
 BuildRequires:  scdoc
 # Dmenu is the default launcher in sway
@@ -47,15 +45,14 @@ Recommends:     grim
 Patch0001: 3862.patch
 
 %description
-Sway is a tiling window manager supporting Wayland compositor protocol and 
-i3-compatible configuration.
+Sway is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration.
 
 %prep
 %autosetup -p 1 -n %{name}-%{version}%{?versrc_tail}
 mkdir %{_target_platform}
 
 %build
-%meson
+%meson -Dwerror=false
 %meson_build
 
 %install

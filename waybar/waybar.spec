@@ -2,16 +2,16 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.5.0
-Release:    1%{?dist}
+Version:    0.5.1
+Release:    3%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
-
 License:    MIT
+Group:      System/GUI/Other
 URL:        https://github.com/Alexays/Waybar
 Source0:    https://github.com/Alexays/Waybar/archive/%{version}.tar.gz
 
+BuildRequires:	cmake
 BuildRequires:	meson
-BuildRequires:	ninja-build
 BuildRequires:	gcc-c++
 BuildRequires:	libinput-devel
 BuildRequires:	gtkmm30-devel
@@ -20,16 +20,13 @@ BuildRequires:	libappindicator-gtk3-devel
 BuildRequires:	libdbusmenu-gtk3-devel
 BuildRequires:	pulseaudio-libs-devel
 BuildRequires:	wayland-devel
-BuildRequires:	wlroots-devel
-BuildRequires:	sway
+BuildRequires:	sway >= 1.0
+BuildRequires:  wlroots-devel >= 0.5
 BuildRequires:	libsigc++-devel
 BuildRequires:	libnl3-devel
 BuildRequires:	libudev-devel
 BuildRequires:	fmt-devel
-BuildRequires:	git
-Requires:  sway
-Requires:  wlroots
-Requires:  fontawesome-fonts
+Recommends:     sway
 
 %description
 Current features
@@ -51,20 +48,28 @@ Current features
 %autosetup -n %{waybar_dir}
 
 %build
-meson build
-ninja -C build
+%meson
+%meson_build
 
 %install
-mkdir -p %{buildroot}%{_bindir}
-DESTDIR=%{buildroot} ninja -C build install
-mkdir -p %{buildroot}/etc/xdg/waybar/custom_modules
-cp -r %{_builddir}/%{waybar_dir}/resources/custom_modules/* %{buildroot}/etc/xdg/waybar/custom_modules
+%meson_install
 
 %files
-/usr/local/bin/*
-/etc/xdg/waybar/*
+%license LICENSE
+%doc README.md
+%{_sysconfdir}/xdg/waybar/
+%{_bindir}/waybar
 
 %changelog
+* Mon Apr  8 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.1-3
+- Remove Git and add Group
+
+* Sun Apr  7 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.1-2
+- Fix files
+
+* Thu Mar 21 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.1-1
+- Build for 0.5.1
+
 * Thu Mar 21 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.0-1
 - Bump to 0.5.0
 

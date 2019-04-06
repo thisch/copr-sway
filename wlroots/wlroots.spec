@@ -3,7 +3,7 @@
 
 Name:           wlroots
 Version:        0.5.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modular Wayland compositor library
 
 # All files in the sources are licensed as MIT, but
@@ -25,69 +25,78 @@ Summary:        A modular Wayland compositor library
 License:        MIT
 URL:            https://github.com/swaywm/%{name}
 Source0:        %{url}/archive/%{version}/%{name}-%{version}.tar.gz
-#Source0:        %{url}/archive/%{commit}.tar.gz
-#Patch0:         %{url}/commit/be6210cf8216c08a91e085dac0ec11d0e34fb217.patch#/pkgconfig_version.patch
 
 BuildRequires:  gcc
-BuildRequires:  libcap-devel
-BuildRequires:  libinput-devel
-BuildRequires:  libpng
-BuildRequires:  libxkbcommon-devel
-BuildRequires:  mesa-libEGL-devel
-BuildRequires:  mesa-libGLES-devel
-BuildRequires:  mesa-libgbm-devel
-BuildRequires:  mesa-libwayland-egl-devel
-BuildRequires:  meson
-BuildRequires:  pixman-devel
-BuildRequires:  systemd-devel
-BuildRequires:  wayland-devel >= 1.16
-BuildRequires:  wayland-protocols-devel >= 1.15
-BuildRequires:  xcb-util-image-devel
-BuildRequires:  xcb-util-wm-devel
-# patch application
 BuildRequires:  git
+BuildRequires:  meson >= 0.48.0
+BuildRequires:  cmake
+BuildRequires:  pkgconfig
+BuildRequires:  pkgconfig(egl)
+BuildRequires:  pkgconfig(gbm) >= 17.1.0
+BuildRequires:  pkgconfig(glesv2)
+BuildRequires:  pkgconfig(libcap)
+BuildRequires:  pkgconfig(libdrm) >= 2.4.95
+BuildRequires:  pkgconfig(libinput) >= 1.7.0
+BuildRequires:  pkgconfig(libsystemd) >= 237
+BuildRequires:  pkgconfig(libudev)
+BuildRequires:  pkgconfig(libpng)
+BuildRequires:  pkgconfig(pixman-1)
+BuildRequires:  pkgconfig(xcb)
+BuildRequires:  pkgconfig(xcb-composite)
+BuildRequires:  pkgconfig(xcb-icccm)
+BuildRequires:  pkgconfig(xcb-image)
+BuildRequires:  pkgconfig(xcb-render)
+BuildRequires:  pkgconfig(xcb-xfixes)
+BuildRequires:  pkgconfig(wayland-client)
+BuildRequires:  pkgconfig(wayland-egl)
+BuildRequires:  pkgconfig(wayland-protocols) >= 1.17
+BuildRequires:  pkgconfig(wayland-server) >= 1.16
+BuildRequires:  pkgconfig(xkbcommon)
+BuildRequires:  pkgconfig(xcb-errors)
 
-Requires: libwayland-client >= 1.16
-Requires: libwayland-server >= 1.16
-Requires: libwayland-egl >= 1.16
+Requires:       libwayland-client >= 1.16
+Requires:       libwayland-server >= 1.16
+Requires:       libwayland-egl >= 1.16
 
+Provides:       wlroots = %{version}-%{release}
 
 %description
-%{summary}.
+Pluggable, composable, unopinionated modules for building a Wayland compositor;
+or about 50,000 lines of code you were going to write anyway.
 
 
-%package        devel
-Summary:        Development files for %{name}
+%package     devel
+Summary:     Development files of wlroots
 
-Requires:       %{name}%{?_isa} == %{version}-%{release}
-Requires:       libinput-devel%{?_isa}
-Requires:       libxcb-devel%{?_isa}
-Requires:       libxkbcommon-devel%{?_isa}
-Requires:       mesa-libEGL-devel%{?_isa}
-Requires:       pixman-devel%{?_isa}
-Requires:       systemd-devel%{?_isa}
-Requires:       wayland-devel%{?_isa} >= 1.16
-Requires:       xcb-util-wm-devel%{?_isa}
+Requires:    %{name}%{?_isa} == %{version}-%{release}
+Requires:    wayland-devel
+Requires:    wayland-protocols-devel
+Requires:    egl-wayland-devel
+Requires:    mesa-libEGL-devel
+Requires:    mesa-libGLES-devel
+Requires:    mesa-libgbm-devel
+Requires:    libdrm-devel
+Requires:    libinput-devel
+Requires:    libxkbcommon-devel
+Requires:    libgudev-devel
+Requires:    pixman-devel
+Requires:    systemd-devel
 
-%description    devel
-Development files for %{name}.
+Provides:    pkgconfig(wlroots) = %{version}
+
+%description devel
+Pluggable, composable, unopinionated modules for building a Wayland compositor;
+or about 50,000 lines of code you were going to write anyway.
 
 
 %prep
-%define __scm git_am
-%autosetup -n %{name}-%{version} -p 1
+%autosetup -v -n %{name}-%{version}
 
+# Remove all .gitignore files
+%{_bindir}/find %{_builddir}/%{name}-%{version} -name '.gitignore' -delete
 
 %build
-
-# Needed since xcb-errors is not packaged (yet?)
-%global __meson_auto_features auto
-
-%ifarch %{arm} %{ix86}
-export CFLAGS="%{optflags} -Wno-error=format="
-export CXXFLAGS="%{optflags} -Wno-error=format="
-%endif
-%meson
+%meson -Dwerror=false
 %meson_build
 
 
@@ -108,15 +117,17 @@ done
 %meson_test
 
 
-# Needed only for < F28
-%ldconfig_scriptlets
-
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
 %files
 %doc %dir %{_pkgdocdir}
 %doc %{_pkgdocdir}/README.md
 %license LICENSE
 %{_libdir}/lib%{name}.so.%{api_ver}*
+
+%license LICENSE
+%doc README.md
 
 
 %files          devel
@@ -125,8 +136,10 @@ done
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/%{name}.pc
 
-
 %changelog
+* Fri Mar 29 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.0-2
+- changes inspired by https://github.com/MichaelBitard/copr-specs/blob/591d836084b3239477b223329b92e6e941b124bf/wlroots/wlroots.spec
+
 * Sat Mar 16 2019 Matus Honek <mhonek@quincampoix> - 0.5.0-1
 - rebase to 0.5.0
 
