@@ -18,20 +18,22 @@
 
 %define _suffix 5
 Name:           fmt
-Version:        5.3.0
+Version:        5.3.0      
 Release:        0
 Summary:        A modern formatting library
 License:        BSD-2-Clause
-Group:          Development/Libraries/C and C++
+Group:          Development/Libraries/C and C++          
 Url:            https://github.com/fmtlib/fmt
 Source:         https://github.com/fmtlib/fmt/archive/%{version}/%{name}-%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  gcc-c++
-BuildRequires:  pkgconfig
+BuildRequires:  pkg-config
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 
 %description
 fmt is an open-source formatting library for C++.
-It can be used as a safe and fast alternative to (s)printf and IOStreams.
+It can be used as a safe and fast alternative to
+(s)printf and IOStreams.
 
 %package -n libfmt%{_suffix}
 Summary:        A modern formatting library
@@ -39,7 +41,8 @@ Group:          System/Libraries
 
 %description -n libfmt%{_suffix}
 fmt is an open-source formatting library for C++.
-It can be used as a safe and fast alternative to (s)printf and IOStreams.
+It can be used as a safe and fast alternative to
+(s)printf and IOStreams.
 
 %package devel
 Summary:        Development files for fmt
@@ -50,29 +53,49 @@ Requires:       libfmt%{_suffix} = %{version}
 This package provides development files for fmt.
 
 %prep
-%autosetup
+%autosetup -N -n %{name}-%{version}
 
 %build
 %cmake
-make %{?_smp_mflags}
+%make_build
 
 %install
 %make_install
 
 
-%ldconfig_scriptlets
+install -d %{buildroot}%{_libdir}/pkgconfig
+cat << EOF > %{buildroot}%{_libdir}/pkgconfig/%{name}.pc
+prefix=%{_prefix}
+exec_prefix=%{_prefix}
+libdir=%{_libdir}
+includedir=%{_includedir}
 
+Name: fmt
+Description: A modern formatting library
+URL: https://github.com/fmtlib/fmt
+Version: %{version}
+Libs: -L%{_libdir} -lfmt
+Cflags: -I%{_includedir}
+EOF
 
-%files
-%{_libdir}/libfmt.so.%{_suffix}*
-%{!?_licensedir:%global license %%doc}
-%license LICENSE.rst
-%doc README.rst ChangeLog.rst CONTRIBUTING.rst
+%post -n libfmt%{_suffix} -p /sbin/ldconfig
+%postun -n libfmt%{_suffix} -p /sbin/ldconfig
+
+%files -n libfmt%{_suffix}
+%defattr(-,root,root)
+%doc LICENSE.rst README.rst ChangeLog.rst CONTRIBUTING.rst
+%{_libdir}/libfmt.so.5*
 
 %files devel
+%defattr(-,root,root)
 %{_includedir}/fmt
-%{_libdir}/libfmt.so
 %{_libdir}/cmake/fmt
+%{_libdir}/libfmt.so
+%{_libdir}/pkgconfig/%{name}.pc
+%{_datadir}/pkgconfig/%{name}.pc
 
 %changelog
+
+* Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 5.3.0-0
+- Update to 5.3.0 and make adjusts for COPR build
 
