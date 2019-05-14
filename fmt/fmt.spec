@@ -18,8 +18,8 @@
 
 %define _suffix 5
 Name:           fmt
-Version:        5.3.0      
-Release:        0
+Version:        5.3.0
+Release:        1%{?dist}
 Summary:        A modern formatting library
 License:        BSD-2-Clause
 Group:          Development/Libraries/C and C++          
@@ -96,6 +96,6 @@ EOF
 
 %changelog
 
-* Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 5.3.0-0
+* Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 5.3.0-1
 - Update to 5.3.0 and make adjusts for COPR build
 

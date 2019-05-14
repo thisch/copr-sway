@@ -2,8 +2,8 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.6.0
-Release:    3%{?dist}
+Version:    0.6.3
+Release:    1%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
 License:    MIT
 Group:      System/GUI/Other
@@ -13,6 +13,7 @@ Source0:    https://github.com/Alexays/Waybar/archive/%{version}.tar.gz
 BuildRequires:	cmake
 BuildRequires:	meson
 BuildRequires:	gcc-c++
+BuildRequires:	clang-tools-extra
 BuildRequires:	libinput-devel
 BuildRequires:	gtkmm30-devel
 BuildRequires:	jsoncpp-devel
@@ -25,14 +26,16 @@ BuildRequires:  wlroots-devel >= 0.5
 BuildRequires:	libsigc++-devel
 BuildRequires:	libnl3-devel
 BuildRequires:	libudev-devel
-BuildRequires:	fmt >= 5.3.0
+BuildRequires:	fmt-devel >= 5.3.0
+BuildRequires:	libmpdclient-devel
+BuildRequires:	git
 Recommends:     sway
 
 %description
 Current features
 
   Sway (Workspaces, Binding mode, Focused window name)
-  Tray (Beta) #21
+  Tray (see issue #21)
   Local time
   Battery
   Network
@@ -40,6 +43,7 @@ Current features
   Memory
   Cpu load average
   Temperature
+  MPD
   Custom scripts
   Multiple output configuration
   And much more customizations
@@ -61,6 +65,9 @@ Current features
 %{_bindir}/waybar
 
 %changelog
+* Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.3-1
+- Bump to 0.6.3
+
 * Thu Apr  25 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.0-1
 - Bump to 0.6.0
 
