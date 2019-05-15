@@ -16,7 +16,7 @@ BuildRequires:  wayland-protocols-devel
 BuildRequires:  cairo-devel
 BuildRequires:  gdk-pixbuf2-devel
 BuildRequires:  scdoc
-
+Recommends:     sway
 
 %description
 swaybg is a wallpaper utility for Wayland compositors. It is compatible with any Wayland compositor which implements the following Wayland protocols:
@@ -24,23 +24,18 @@ swaybg is a wallpaper utility for Wayland compositors. It is compatible with any
   xdg-output
   xdg-shell
 
-
 %prep
 %autosetup
-
 
 %build
 %meson -Dwerror=false --auto-features=auto
 %meson_build
 
-
 %install
 %meson_install
 
-
 %check
 %meson_test
-
 
 %files
 %{_bindir}/swaybg
@@ -49,8 +44,6 @@ swaybg is a wallpaper utility for Wayland compositors. It is compatible with any
 %license LICENSE
 %doc README.*
 
-
 %changelog
 * Tue May 14 2019 Rafael Gumieri <rafael@gumieri.com> - 1.0-1
 - RPM release of swayidle 1.0
-

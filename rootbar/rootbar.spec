@@ -1,5 +1,5 @@
 Name:       rootbar
-Version:    0.0.0.r98.63ee1eed0bfc
+Version:    0.0.0.r117
 Release:    0%{?dist}
 Summary:    Bar for wlroots based wayland compositors such as sway.
 License:    MIT
@@ -32,13 +32,17 @@ cd Release
 %make_build
 
 %install
-cp Release/%{name} %{_bindir}/%{name}
+mkdir -p %{buildroot}%{_bindir}
+cp Release/rootbar %{buildroot}%{_bindir}/rootbar
 
 %files
 %license COPYING.md
 %doc README.md
-%{_bindir}/%{name}
+/usr/bin/rootbar
 
 %changelog
+* Wed May 15 2019 Rafael Gumieri <rafael@gumieri.com> - 0.0.0.r117.7119b6b34dc7-0
+- Update build.
+
 * Mon Apr 15 2019 Rafael Gumieri <rafael@gumieri.com> - 0.0.0.r98.63ee1eed0bfc-0
 - Create build.
