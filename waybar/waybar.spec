@@ -2,8 +2,8 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.6.3
-Release:    1%{?dist}
+Version:    0.6.4
+Release:    3%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
 License:    MIT
 Group:      System/GUI/Other
@@ -29,6 +29,7 @@ BuildRequires:	libudev-devel
 BuildRequires:	fmt-devel >= 5.3.0
 BuildRequires:	libmpdclient-devel
 BuildRequires:	git
+Requires:	      libfmt5 >= 5.3.0
 Recommends:     sway
 
 %description
@@ -65,6 +66,15 @@ Current features
 %{_bindir}/waybar
 
 %changelog
+* Sun May 19 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.4-3
+- The fmt package is named "libfmt5"
+
+* Sun May 19 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.4-2
+- Requires latest fmt package
+
+* Sat May 18 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.4-1
+- Bump to 0.6.4
+
 * Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.3-1
 - Bump to 0.6.3
 
