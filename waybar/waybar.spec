@@ -2,8 +2,8 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.6.4
-Release:    3%{?dist}
+Version:    0.6.5
+Release:    2%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
 License:    MIT
 Group:      System/GUI/Other
@@ -31,6 +31,7 @@ BuildRequires:	libmpdclient-devel
 BuildRequires:	git
 Requires:	      libfmt5 >= 5.3.0
 Recommends:     sway
+Recommends:     fontawesome-fonts
 
 %description
 Current features
@@ -66,6 +67,12 @@ Current features
 %{_bindir}/waybar
 
 %changelog
+* Mon May 20 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.5-2
+- Recomend Awesome Fonts (fontawesome-fonts)
+
+* Sat May 19 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.5-1
+- Bump to 0.6.5
+
 * Sun May 19 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.4-3
 - The fmt package is named "libfmt5"
 
