@@ -16,10 +16,9 @@
 #
 
 
-%define _suffix 5
 Name:           fmt
 Version:        5.3.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A modern formatting library
 License:        BSD-2-Clause
 Group:          Development/Libraries/C and C++          
@@ -35,19 +34,10 @@ fmt is an open-source formatting library for C++.
 It can be used as a safe and fast alternative to
 (s)printf and IOStreams.
 
-%package -n libfmt%{_suffix}
-Summary:        A modern formatting library
-Group:          System/Libraries
-
-%description -n libfmt%{_suffix}
-fmt is an open-source formatting library for C++.
-It can be used as a safe and fast alternative to
-(s)printf and IOStreams.
-
 %package devel
 Summary:        Development files for fmt
 Group:          Development/Libraries/C and C++
-Requires:       libfmt%{_suffix} = %{version}
+Requires:       fmt = %{version}
 
 %description devel
 This package provides development files for fmt.
@@ -78,10 +68,10 @@ Libs: -L%{_libdir} -lfmt
 Cflags: -I%{_includedir}
 EOF
 
-%post -n libfmt%{_suffix} -p /sbin/ldconfig
-%postun -n libfmt%{_suffix} -p /sbin/ldconfig
+%post -p /sbin/ldconfig
+%postun -p /sbin/ldconfig
 
-%files -n libfmt%{_suffix}
+%files
 %defattr(-,root,root)
 %doc LICENSE.rst README.rst ChangeLog.rst CONTRIBUTING.rst
 %{_libdir}/libfmt.so.5*
@@ -95,6 +85,9 @@ EOF
 %{_datadir}/pkgconfig/%{name}.pc
 
 %changelog
+
+* Mon May 27 2019 Rafael Gumieri <rafael@gumieri.com> - 5.3.0-2
+- Fix fmt package name for fedora
 
 * Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 5.3.0-1
 - Update to 5.3.0 and make adjusts for COPR build
