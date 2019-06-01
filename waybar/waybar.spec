@@ -2,8 +2,8 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.6.6
-Release:    2%{?dist}
+Version:    0.6.7
+Release:    1%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
 License:    MIT
 Group:      System/GUI/Other
@@ -68,6 +68,9 @@ Current features
 %{_bindir}/waybar
 
 %changelog
+* Sat Jun 01 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.7-1
+- Bump to 0.6.7
+
 * Mon May 27 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.6-2
 - Fix: fmt package name for fedora should be "fmt"
 
