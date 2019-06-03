@@ -1,5 +1,5 @@
 Name:		slurp
-Version:	1.1.0
+Version:	1.2.0
 Release:	1%{?dist}
 Summary:	Select a region in a Wayland compositor
 
@@ -43,5 +43,8 @@ mkdir %{_target_Platform}
 %{_mandir}/man1/slurp*.1*
 
 %changelog
+* Mon Jun 03 2019 Rafael Gumieri <rafael@gumieri.com> - 1.2.0-1
+- Update to 1.2.0
+
 * Sun Mar 10 2019 Marvin Beckers <mail@embik.me> 1.1.0-1
 - Initial package release
