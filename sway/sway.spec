@@ -1,5 +1,5 @@
 Name:           sway
-Version:        1.0
+Version:        1.1.1
 Release:        1%{?dist}
 Summary:        i3-compatible window manager for Wayland
 Group:          User Interface/X
@@ -42,13 +42,11 @@ Recommends:     rxvt-unicode-256color-ml
 # grim is a recommended way to take screenshots on sway 1.0+
 Recommends:     grim
 
-Patch0001: 3862.patch
-
 %description
 Sway is a tiling window manager supporting Wayland compositor protocol and i3-compatible configuration.
 
 %prep
-%autosetup -p 1 -n %{name}-%{version}%{?versrc_tail}
+%autosetup -n %{name}-%{version}%{?versrc_tail}
 mkdir %{_target_platform}
 
 %build
@@ -84,6 +82,9 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_datadir}/backgrounds/sway/*.png
 
 %changelog
+* Mon Jun 03 2019 Rafael Gumieri <rafael@gumieri.com> - 1.1.1-1
+- Update to 1.1.1
+
 * Fri Mar 15 2019 kenoh <kenoh@local> - 1.0
 - Final release 1.0
 
