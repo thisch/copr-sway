@@ -2,8 +2,8 @@
 
 
 Name:           wlroots
-Version:        0.5.0
-Release:        2%{?dist}
+Version:        0.6.0
+Release:        1%{?dist}
 Summary:        A modular Wayland compositor library
 
 # All files in the sources are licensed as MIT, but
@@ -137,6 +137,9 @@ done
 %{_libdir}/pkgconfig/%{name}.pc
 
 %changelog
+* Mon Jun 03 2019 Rafael Gumieri <rafael@gumieri.com> - 0.6.0-1
+- Update to 0.6.0
+
 * Fri Mar 29 2019 Rafael Gumieri <rafael@gumieri.com> - 0.5.0-2
 - changes inspired by https://github.com/MichaelBitard/copr-specs/blob/591d836084b3239477b223329b92e6e941b124bf/wlroots/wlroots.spec
 
