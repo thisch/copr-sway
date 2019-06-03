@@ -30,6 +30,7 @@ BuildRequires:  pkgconfig(libevdev)
 BuildRequires:  wlroots-devel >= 0.6
 BuildRequires:  wayland-devel
 BuildRequires:  scdoc
+Requires:       swaybg
 # Dmenu is the default launcher in sway
 Requires:       dmenu
 Requires:       libinput >= 1.6.0
@@ -72,7 +73,6 @@ sed -i "s|^output \* bg .*|output * bg /usr/share/backgrounds/f%{fedora}/default
 %{_mandir}/man7/sway*.7*
 %caps(cap_sys_ptrace,cap_sys_tty_config=eip) %{_bindir}/sway
 %{_bindir}/swaybar
-%{_bindir}/swaybg
 %{_bindir}/swaymsg
 %{_bindir}/swaynag
 %{_datadir}/wayland-sessions/sway.desktop
