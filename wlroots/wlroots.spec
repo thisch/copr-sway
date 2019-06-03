@@ -1,4 +1,4 @@
-%global api_ver 2
+%global api_ver 3
 
 
 Name:           wlroots
