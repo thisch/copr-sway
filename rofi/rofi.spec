@@ -1,5 +1,5 @@
 Name:    rofi
-Version: 1.5.3
+Version: 1.5.4
 Release: 1%{?dist}
 Summary: A window switcher, run dialog and dmenu replacement
 
@@ -61,6 +61,9 @@ make test
 %license COPYING
 
 %changelog
+* Thu Jun 27 2019 Rafael Gumieri <rafael@gumieri.com> - 1.5.4-1
+- Updating to version 1.5.4;
+
 * Sun Jun 23 2019 Rafael Gumieri <rafael@gumieri.com> - 1.5.3-1
 - Updating to version 1.5.3;
 
