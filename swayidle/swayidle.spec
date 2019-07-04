@@ -1,6 +1,6 @@
 Name:           swayidle
 Version:        1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Idle management daemon for Wayland
 
 License:        MIT
@@ -10,10 +10,11 @@ Source0:        %{url}/archive/%{version}.tar.gz
 BuildRequires:  git
 BuildRequires:  gcc
 BuildRequires:  clang
+BuildRequires:  cmake
 BuildRequires:  meson
 BuildRequires:  wayland-devel
 BuildRequires:  wayland-protocols-devel
-BuildRequires:  systemd
+BuildRequires:  systemd-devel
 BuildRequires:  scdoc
 
 
