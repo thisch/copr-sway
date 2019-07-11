@@ -1,6 +1,6 @@
 Name:           swayidle
-Version:        1.3
-Release:        3%{?dist}
+Version:        1.5
+Release:        1%{?dist}
 Summary:        Idle management daemon for Wayland
 
 License:        MIT
@@ -53,6 +53,9 @@ with any Wayland compositor which implements the KDE idle protocol.
 
 
 %changelog
+* Thu Jul 11 2019 Rafael Gumieri <rafael@gumieri.com> - 1.5-1
+- Update to 1.5
+
 * Mon May 13 2019 Rafael Gumieri <rafael@gumieri.com> - 1.3-1
 - Update to 1.3
 
