@@ -2,7 +2,7 @@
 %define waybar_dir Waybar-%{version}
 
 Name:       waybar
-Version:    0.7.0
+Version:    0.7.1
 Release:    1%{?dist}
 Summary:    Highly customizable Wayland bar for Sway and Wlroots based compositors.
 License:    MIT
@@ -68,6 +68,9 @@ Current features
 %{_bindir}/waybar
 
 %changelog
+* Thu Jul 11 2019 Rafael Gumieri <rafael@gumieri.com> - 0.7.1-1
+- Bump to 0.7.1
+
 * Sun Jun 23 2019 Rafael Gumieri <rafael@gumieri.com> - 0.7.0-1
 - Bump to 0.7.0
 
