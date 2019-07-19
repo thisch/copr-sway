@@ -48,7 +48,7 @@ BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 * Fri Jul 19 2019 Rafael Gumieri <rafael@gumieri.com> - 1.4-1
 - New release
 
-* Sun Mar 19 2019 Rafael Gumieri <rafael@gumieri.com> - 1.3-1
+* Sun Apr 21 2019 Rafael Gumieri <rafael@gumieri.com> - 1.3-1
 - New release
 
 * Sun Mar 19 2019 Rafael Gumieri <rafael@gumieri.com> - 1.2-1
