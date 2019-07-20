@@ -42,9 +42,13 @@ BuildRequires:  pkgconfig(gdk-pixbuf-2.0)
 %{_bindir}/makoctl
 %{_mandir}/man1/mako.1.gz
 %{_mandir}/man1/makoctl.1.gz
+%{_datadir}/dbus-1/services/fr.emersion.mako.service
 
 
 %changelog
+* Sat Jul 20 2019 Rafael Gumieri <rafael@gumieri.com> - 1.4-1
+- add service unit
+
 * Fri Jul 19 2019 Rafael Gumieri <rafael@gumieri.com> - 1.4-1
 - New release
 
